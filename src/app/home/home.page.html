@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Storyteller
+      StoryTeller
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -12,6 +12,6 @@
       <ion-input placeholder="Заголовок" title [(ngModel)]="data.title"></ion-input>
     </ion-item>
     <ion-textarea text placeholder="Полный текст истории" [(ngModel)]="data.text" [autoGrow]="true"></ion-textarea>
-    <ion-button routerLink="/story">Поехали!</ion-button>
+    <ion-button [disabled]="!data.title || !data.text" routerLink="/story">Поехали!</ion-button>
   </ion-list>
 </ion-content>
