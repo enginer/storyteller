@@ -1,0 +1,62 @@
+ion-content {
+  --background: sdfsdfsd;
+  --color: #282828;
+  background-image: url(https://pitshanger-ltd.co.uk/images/colours/637-TL_Tracing.jpg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: gray;
+  position: relative;
+}
+[starter] {
+  div {
+    font-size: 300%;
+    padding: 20px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+  }
+  text-align: center;
+}
+[story] {
+  height: 100vw;
+  position: relative;
+}
+[title] {
+  padding: 30px 10px;
+  font-size: 150%;
+}
+[text-wrapper] {
+  padding: 0 10px 20px;
+  max-height: 280px;
+  overflow: scroll;
+  scroll-behavior: smooth;
+
+  /*[hider] {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 20px;
+  }*/
+}
+
+[final] {
+  position: absolute;
+  bottom: 0;
+  //background-color: white;
+  margin: 0 auto;
+  padding: 10px;
+  text-align: center;
+  width: 100%;
+}
+[panel] {
+  margin-top: 30px;
+  padding: 10px;
+  text-align: center;
+  [remains] {
+
+    div {
+      margin: -20px;
+      font-size: 1000%;
+      color: #3dc2ff;
+    }
+  }
+}
