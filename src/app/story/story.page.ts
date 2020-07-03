@@ -26,8 +26,8 @@ export class StoryPage implements OnInit {
         // .splitKeep(/[\n]/g, false);
   }
 
-  showNextSentence(event) {
-    if (event.target != event.currentTarget) return;
+  showNextSentence(event?: Event) {
+    if (event && event.target != event.currentTarget) return;
     this.started = true;
     this.visibleSentenceIndex++;
 
@@ -36,15 +36,15 @@ export class StoryPage implements OnInit {
       return;
     }
 
-    if (this.sentences[this.visibleSentenceIndex - 1].replace(" ", "").endsWith('\n') && this.sentences[this.visibleSentenceIndex].trim() == '') {
+    /*if (this.sentences[this.visibleSentenceIndex - 1].replace(" ", "").endsWith('\n') && this.sentences[this.visibleSentenceIndex].trim() == '') {
       this.visibleSentenceIndex += 1;
       this.hiddenSentenceIndex = this.visibleSentenceIndex;
-      this.showNextSentence(event)
+      this.showNextSentence()
       return
-    }
+    }*/
 
     if (this.sentences[this.visibleSentenceIndex].trim() == '') {
-      this.showNextSentence(event)
+      this.showNextSentence()
       return
     }
     setTimeout(() => this.textWrapper.nativeElement.scroll(0, 999999), 100)
@@ -53,6 +53,16 @@ export class StoryPage implements OnInit {
   restart() {
     this.visibleSentenceIndex = 0;
     this.hiddenSentenceIndex = -1;
+  }
+
+  newPage() {
+    if (this.sentences[this.visibleSentenceIndex + 1].trim() == '') {
+      this.visibleSentenceIndex++
+      this.newPage()
+      return
+    }
+    this.hiddenSentenceIndex = this.visibleSentenceIndex;
+    this.showNextSentence()
   }
 }
 

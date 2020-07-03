@@ -4,7 +4,7 @@
     <div #textWrapper text-wrapper>
       <div text (click)="showNextSentence($event)">
         <span *ngFor="let sentence of sentences; let i = index" (click)="showNextSentence($event)">
-          <span *ngIf="i <= visibleSentenceIndex && i > hiddenSentenceIndex">{{sentence}}</span>
+          <span *ngIf="i <= visibleSentenceIndex && i > hiddenSentenceIndex" (click)="showNextSentence($event)">{{sentence}}</span>
           <br *ngIf="i <= visibleSentenceIndex && i > hiddenSentenceIndex && sentence.endsWith('\n')" (click)="showNextSentence($event)"/>
         </span>
       </div>
@@ -23,7 +23,10 @@
     <div remains (click)="showNextSentence($event)">
       Осталось предложений <div (click)="showNextSentence($event)">{{sentences?.length - visibleSentenceIndex}}</div>
     </div>
-    <ion-button restart (click)="restart()">Начать с начала</ion-button>
+    <ion-button restart (click)="restart()"  color="secondary">Начать с начала</ion-button>
     <ion-button back (click)="location.back()" color="secondary">Закончить</ion-button>
+    <div style="padding-top: 20px">
+      <ion-button (click)="newPage()" style="width: 100%">Следующее с новой страницы</ion-button>
+    </div>
   </div>
 </ion-content>
