@@ -9,14 +9,14 @@ import {Location} from '@angular/common';
   styleUrls: ['./story.page.scss'],
 })
 export class StoryPage implements OnInit {
-  private sentences: string[];
-  private visibleSentenceIndex = 0;
-  private hiddenSentenceIndex = -1;
+  sentences: string[];
+  visibleSentenceIndex = 0;
+  hiddenSentenceIndex = -1;
   started: boolean;
 
   @ViewChild("textWrapper", { read: ElementRef }) private textWrapper: ElementRef;
 
-  constructor(public data: DataService, private location: Location) { }
+  constructor(public data: DataService, public location: Location) { }
 
   ngOnInit() {
     this.sentences = this.data.text.splitKeep(/[.?!\n]/g, false);

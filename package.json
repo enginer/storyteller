@@ -9,7 +9,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "buildpages": "ng build --base-href 'https://enginer.github.io/storyteller/' --prod"
   },
   "private": true,
   "dependencies": {
