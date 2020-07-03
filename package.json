@@ -10,7 +10,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "buildpages": "ng build --base-href 'https://enginer.github.io/storyteller/' --prod"
+    "buildpages": "ng build --base-href 'https://enginer.github.io/storyteller/' --prod && git add docs/* && git commit -am 'deployment' && git push"
   },
   "private": true,
   "dependencies": {

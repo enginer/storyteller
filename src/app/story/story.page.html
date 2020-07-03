@@ -6,7 +6,7 @@
       <div text>
         <span *ngFor="let sentence of sentences; let i = index">
           <span *ngIf="i <= visibleSentenceIndex && i > hiddenSentenceIndex">{{sentence}}</span>
-          <br *ngIf="i <= visibleSentenceIndex && i > hiddenSentenceIndex && sentence == '\n'"/>
+          <br *ngIf="i <= visibleSentenceIndex && i > hiddenSentenceIndex && sentence.endsWith('\n')"/>
         </span>
       </div>
     </div>
@@ -16,7 +16,7 @@
   </div>
   <div starter *ngIf="!started" (click)="started = true">
     <div (click)="showNextSentence($event)">
-      Запускай запись экрана с микрофоном
+      Включи режим "не беспокоить" и запускай запись экрана с микрофоном
     </div>
     <ion-button (click)="started = true">Поехали</ion-button>
   </div>

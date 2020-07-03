@@ -19,7 +19,8 @@ export class StoryPage implements OnInit {
   constructor(public data: DataService, public location: Location) { }
 
   ngOnInit() {
-    this.sentences = this.data.text.splitKeep(/[.?!\n]/g, false);
+    // this.sentences = this.data.text.splitKeep(/[.?!\n]/g, false);
+    this.sentences = this.data.text.splitKeep(/[\n]/g, false);
   }
 
   showNextSentence(event) {
@@ -27,8 +28,8 @@ export class StoryPage implements OnInit {
     this.started = true;
     this.visibleSentenceIndex++;
 
-    if (this.sentences[this.visibleSentenceIndex] == '\n' && this.sentences[this.visibleSentenceIndex + 1] == '\n') {
-      this.visibleSentenceIndex += 2;
+    if (this.sentences[this.visibleSentenceIndex - 1].endsWith('\n') && this.sentences[this.visibleSentenceIndex] == '\n') {
+      this.visibleSentenceIndex += 1;
       this.hiddenSentenceIndex = this.visibleSentenceIndex;
       this.showNextSentence(event)
       return
@@ -41,7 +42,7 @@ export class StoryPage implements OnInit {
     if (this.visibleSentenceIndex > this.sentences.length) {
       this.location.back()
     }
-    // setTimeout(() => this.textWrapper.nativeElement.scroll(0, 999999), 100)
+    setTimeout(() => this.textWrapper.nativeElement.scroll(0, 999999), 100)
   }
 
   restart() {
