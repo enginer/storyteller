@@ -13,20 +13,20 @@
       Финальные заставки
     </div>
   </div>
-  <div starter *ngIf="!started" (click)="started = true; showNextSentence($event)">
-    <div (click)="showNextSentence($event)">
+  <div starter *ngIf="!started" (click)="started = true">
+    <div (click)="started = true">
       Включи режим "не беспокоить" и запускай запись экрана с микрофоном
     </div>
     <ion-button (click)="started = true">Поехали</ion-button>
   </div>
   <div panel *ngIf="started">
+    <div style="padding-bottom: 20px">
+      <ion-button (click)="newPage()" style="width: 100%">Следующее с новой страницы</ion-button>
+    </div>
     <div remains (click)="showNextSentence($event)">
       Осталось предложений <div (click)="showNextSentence($event)">{{sentences?.length - visibleSentenceIndex}}</div>
     </div>
     <ion-button restart (click)="restart()"  color="secondary">Начать с начала</ion-button>
     <ion-button back (click)="location.back()" color="secondary">Закончить</ion-button>
-    <div style="padding-top: 20px">
-      <ion-button (click)="newPage()" style="width: 100%">Следующее с новой страницы</ion-button>
-    </div>
   </div>
 </ion-content>
