@@ -2,19 +2,18 @@
   <div story (click)="showNextSentence($event)">
     <div title>{{data.title}}</div>
     <div #textWrapper text-wrapper>
-      <div hider></div>
-      <div text>
-        <span *ngFor="let sentence of sentences; let i = index">
+      <div text (click)="showNextSentence($event)">
+        <span *ngFor="let sentence of sentences; let i = index" (click)="showNextSentence($event)">
           <span *ngIf="i <= visibleSentenceIndex && i > hiddenSentenceIndex">{{sentence}}</span>
-          <br *ngIf="i <= visibleSentenceIndex && i > hiddenSentenceIndex && sentence.endsWith('\n')"/>
+          <br *ngIf="i <= visibleSentenceIndex && i > hiddenSentenceIndex && sentence.endsWith('\n')" (click)="showNextSentence($event)"/>
         </span>
       </div>
     </div>
-    <div final *ngIf="visibleSentenceIndex == sentences.length">
+    <div final *ngIf="visibleSentenceIndex == sentences?.length" (click)="showNextSentence($event)">
       Финальные заставки
     </div>
   </div>
-  <div starter *ngIf="!started" (click)="started = true">
+  <div starter *ngIf="!started" (click)="started = true; showNextSentence($event)">
     <div (click)="showNextSentence($event)">
       Включи режим "не беспокоить" и запускай запись экрана с микрофоном
     </div>
@@ -22,7 +21,7 @@
   </div>
   <div panel *ngIf="started">
     <div remains (click)="showNextSentence($event)">
-      Осталось предложений <div (click)="showNextSentence($event)">{{sentences.length - visibleSentenceIndex}}</div>
+      Осталось предложений <div (click)="showNextSentence($event)">{{sentences?.length - visibleSentenceIndex}}</div>
     </div>
     <ion-button restart (click)="restart()">Начать с начала</ion-button>
     <ion-button back (click)="location.back()" color="secondary">Закончить</ion-button>

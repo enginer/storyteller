@@ -20,7 +20,9 @@ export class StoryPage implements OnInit {
 
   ngOnInit() {
     // this.sentences = this.data.text.splitKeep(/[.?!\n]/g, false);
-    this.sentences = this.data.text.splitKeep(/[\n]/g, false);
+    this.sentences = this.data.text
+        .replace(/⠀/g, " ")
+        .splitKeep(/[\n]/g, false);
   }
 
   showNextSentence(event) {
@@ -28,19 +30,21 @@ export class StoryPage implements OnInit {
     this.started = true;
     this.visibleSentenceIndex++;
 
-    if (this.sentences[this.visibleSentenceIndex - 1].endsWith('\n') && this.sentences[this.visibleSentenceIndex] == '\n') {
+    if (this.visibleSentenceIndex > this.sentences.length) {
+      this.location.back()
+      return;
+    }
+
+    if (this.sentences[this.visibleSentenceIndex - 1].replace(" ", "").endsWith('\n') && this.sentences[this.visibleSentenceIndex].trim() == '') {
       this.visibleSentenceIndex += 1;
       this.hiddenSentenceIndex = this.visibleSentenceIndex;
       this.showNextSentence(event)
       return
     }
-    if (this.sentences[this.visibleSentenceIndex] == '\n') {
+
+    if (this.sentences[this.visibleSentenceIndex].trim() == '') {
       this.showNextSentence(event)
       return
-    }
-
-    if (this.visibleSentenceIndex > this.sentences.length) {
-      this.location.back()
     }
     setTimeout(() => this.textWrapper.nativeElement.scroll(0, 999999), 100)
   }
