@@ -22,7 +22,7 @@ export class StoryPage implements OnInit {
     // this.sentences = this.data.text.splitKeep(/[.?!\n]/g, false);
     this.sentences = this.data.text
         .replace(/⠀/g, " ")
-        .splitKeep(/[.?!\n]/g, false);
+        .splitKeep(/\.\.|\.|\?|\!|\n/g, false);
         // .splitKeep(/[\n]/g, false);
   }
 
