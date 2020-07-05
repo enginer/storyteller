@@ -12,6 +12,10 @@
       <ion-input placeholder="Заголовок" title [(ngModel)]="data.title"></ion-input>
     </ion-item>
     <ion-textarea text placeholder="Полный текст истории" [(ngModel)]="data.text" [autoGrow]="true"></ion-textarea>
-    <ion-button [disabled]="!data.title || !data.text" routerLink="/story">Поехали!</ion-button>
+    <div style="text-align: center">
+      <ion-button [disabled]="!data.title || !data.text" routerLink="/story-lines">По строкам</ion-button>
+      <br>
+      <ion-button [disabled]="!data.title || !data.text" routerLink="/story" color="secondary">По предложениям</ion-button>
+    </div>
   </ion-list>
 </ion-content>
